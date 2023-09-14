@@ -1,0 +1,18 @@
+body {
+    font-family: 'Cairo', sans-serif;
+    text-align: center;
+    background-color: #ffde96;
+  
+  }
+
+.container-fluid{
+    padding: 0 10%;
+    margin-top: 100px;
+  }
+
+.square-box{
+    min-height: 350px;
+    max-width: 500px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}

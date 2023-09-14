@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF_8">
+        <title> Search </title>
+        <!-- Bootstrap -->
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/static/login.css">
+        <!--link rel="stylesheet" href="{{ url_for('static',filename = 'start.css') }}"-->
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-sm-12">
+
+                </div>
+                <div class="display col-lg-4 col-sm-12">
+                    <div class="card text-dark bg-light border-dark">
+                    <div class="card-header"> <h3>Register</h3> </div> 
+                    <div class="card-body text-center">
+                    <div class="card-title"> Register with your email </div>
+
+                    <form action="{{url_for('main.signup')}}" method="POST">
+                        {{ form.csrf_token }}
+                        {{form.username.label}}<br>
+                        {{form.username (class="box", type="text", placeholder="Enter a Username" )}}
+                        <br><br>
+                        
+                        {{ form.csrf_token }}
+                        {{form.email.label}}<br>
+                        {{form.email (class="box", type="email", placeholder="Enter your email")}}
+                        <br><br>
+
+                        {{form.password.label}}<br>
+                        {{form.password (class="box", type="password", placeholder="Enter a password")}}
+                        {% for err in form.password.errors %}
+                        <span class="err">{{err}}</span>
+                        {%endfor%}
+                        <br><br>
+
+                        {{form.confirm.label}}<br>
+                        {{form.confirm (class="box", type="password", placeholder="COnfirm Password")}}
+                        {% for err in form.confirm.errors %}
+                        <span class="err">{{err}}</span>
+                        {%endfor%}
+                        <br>
+                        <br>
+
+                        {% if form.errors %}
+                        {{ form.errors }}
+                        {% endif %}
+                        {{form.submit (class="box btn btn-primary", type="submit")}}
+
+                    </form>
+                     Already Signed Up? <a href="/login"> Login </a>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

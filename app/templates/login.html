@@ -1,0 +1,68 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF_8">
+        
+        <title> Login </title>
+
+        <!-- Bootstrap -->
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/static/login.css">
+        <!--link rel="stylesheet" href="{{ url_for('static',filename = 'start.css') }}"-->
+    </head>
+    <body>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12">
+                
+            </div>
+            <div class="display col-lg-4 col-sm-12">
+                <h1 class="logo"> Blog Lite </h1>
+                <br>
+                <div class="card text-dark border-dark bg-light md-3">
+                <div class="card-header"> Sign In </div>
+
+                <div class="card-body text-center">
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  {% for message in messages %}
+                   <h5>{{ message }}</h5>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+
+                <form action="{{url_for('main.login')}}" method="POST">
+                    {{ form.csrf_token }}
+                    {{form.email.label}}<br>
+                    {{form.email (class="box", type="email" , placeholder="Enter your email")}}<br>
+                    {%for err in form.email.errors%}
+                    <span class="err">{{err}}</span>
+                    {%endfor%}<br>
+
+                    {{form.password.label}}<br>
+                    {{form.password (class="box", type="password", placeholder="Ente your password")}}<br>
+                    {%for err in form.password.errors%}
+                    <span class="err">{{err}}</span>
+                    {%endfor%}
+
+                    {%for err in form.errors %}
+                    {{err}}
+                    {%endfor%}
+                    {{form.submit (class="box btn btn-primary", type="submit")}}
+                </form>
+                <p>
+                <a class="card-link" href="/signup">Sign Up</a> </p>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

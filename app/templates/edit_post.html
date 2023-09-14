@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Edit Post </title>
+	<!-- CSS only -->
+	<link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/static/profile.css" />
+</head>
+<body style="padding-left: 30px; padding-right: 30px;" >
+
+    <!--Navigation Bar-->
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/home">Blog Lite</a>
+			<div class="collapse navbar-collapse" id="navbarScroll">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item ">
+					<a class="nav-link" href="/search">Search</a>
+				  </li>
+					<li class="nav-item">
+					<a class="nav-link" href="/profile/{{current_user.id}}">My Profile</a>
+				  </li>
+					<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('main.logout') }}">Log Out</a>
+				  </li>
+				</ul>
+		</div>
+	 </nav>
+     <br>
+
+
+    <h3 class="text-center"> Edit Post </h3>
+    <br>
+     <div class="container">
+        <form action="/edit_post?id={{post.post_id}}&e=0" method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        Photo
+                    </div>
+                    <div class="card-body">
+                        <img src="{{post.photo_url.replace(' ','_')}}" style="height:250px; width:250px; float: left;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        Caption
+                    </div>
+                    <div class="card-body">
+                        <textarea class="form-control" name="caption" rows="9" cols="20" placeholder="{{post.caption}}" required></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <input class="btn btn-primary" type="submit" value="Update">
+        </div>
+        </form>
+        <div class="row">
+            <form action="/edit_post?id={{post.post_id}}&e=1" method="POST" enctype="multipart/form-data">
+                <input class="btn btn-danger" type="submit" value="Delete Post" onclick="return confirmation()">
+            </form>
+        </div>
+     </div>
+     <script>
+        function confirmation(){
+             if(confirm("Do you want to really delete the post?")){
+                return true;
+             } else {
+                return false;
+             }
+        }
+     </script>
+</body>
+</html>
